@@ -1,12 +1,14 @@
-import React from 'react'
-import './CourseGoalItem.css'
+import React from "react";
+import "./CourseGoalItem.css";
 
-const CourseGoalItem = (props)=> {
-    const {children} = props
+const CourseGoalItem = (props) => {
+  const { children, onDeleteGoal, id } = props;
 
-    return(
-        <li className='goal-item'>{children}</li>
-    )
-}
+  return (
+    <li className="goal-item" onClick={() => onDeleteGoal(id)}>
+      {children}
+    </li>
+  );
+};
 
 export default CourseGoalItem;

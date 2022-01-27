@@ -9,7 +9,14 @@ const App = () => {
 
   const addGoalHandler = (goal) => {
     SetCourseGoals((prev) => {
-      return [{ id: Math.random(), text: goal }, ...prev];
+      return [{ id: Math.random().toString(), text: goal }, ...prev];
+    });
+  };
+
+  const deleteGoalHandler = (goalId) => {
+    SetCourseGoals((prev) => {
+      const filtered = prev.filter((g) => g.id !== goalId);
+      return filtered;
     });
   };
 
@@ -21,7 +28,10 @@ const App = () => {
 
       <section id="goals">
         {coursegoals.length > 0 ? (
-          <CourseGoalList goals={coursegoals} />
+          <CourseGoalList
+            goals={coursegoals}
+            onDeleteGoal={deleteGoalHandler}
+          />
         ) : (
           <p style={{ textAlign: "center" }}>No goals found. Maybe add one?</p>
         )}
